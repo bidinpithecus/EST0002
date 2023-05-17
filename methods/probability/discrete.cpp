@@ -23,9 +23,9 @@ long double hyperGeometric(int a, int b, int n, int x) {
     return ((fact(a) / (fact(a - x) * fact(x))) * (fact(b) / (fact(b - n + x) * fact(n - x)))) / (fact(a + b) / (fact(a + b - n) * fact(n)));
 }
 
-long double multinomial(int n, long double x1, long double x2, long double x3) {
-    return 0.0;
-}
+// long double multinomial(int n, long double x1, long double x2, long double x3) {
+//     return 0.0;
+// }
 
 long double poisson(int x, long double mi) {
     return (pow(mi, x) * pow(M_E, -mi)) / (fact(x));

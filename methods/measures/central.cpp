@@ -4,9 +4,6 @@
 #include <unordered_map>
 #include <algorithm>
 
-#define FLOOR 0
-#define CEIL 1
-
 using namespace std;
 typedef std::pair<long double, std::size_t> MapEntry;
 
@@ -60,7 +57,7 @@ long double truncatedMean(vector<long double> vec, long double percentage) {
     long unsigned int removedNum = vec.size() * percentage;
     long double result = 0.0;
 
-    for (long unsigned int i = removedNum, j = 0; i < vec.size() - removedNum; i++) {
+    for (long unsigned int i = removedNum; i < vec.size() - removedNum; i++) {
         result += vec.at(i);
     }
 

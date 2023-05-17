@@ -40,9 +40,27 @@ void dispersionMeasures(vector<long double> arr) {
 	cout << "}" << endl;
 }
 
-int main(void) {
+void positionMeasure(vector<long double> arr, float z) {
+	long double arithMean = 7.15;
+	long double stdDev = 0.45;
+	cout << "Score Z(" << z << ") given array: ";
+	printArr(arr);
+	cout << ": " << zScore(arr, 6.5);
+	cout << endl;
+	cout << "Score Z(" << z << ") given Mean(" << arithMean << "), Standard Deviation(" << stdDev << ") = " << zScore(arithMean, stdDev, z) << endl;
+}
+
+void measures(long double z) {
 	vector<long double> arr = {6.5, 6.6, 6.7, 6.8, 7.1, 7.3, 7.4, 7.7, 7.7, 7.7};
 	centralMeasures(arr);
 	cout << endl;
 	dispersionMeasures(arr);
+	cout << endl;
+	positionMeasure(arr, z);
+	cout << endl;
+}
+
+int main(void) {
+	// measures(6.5);
+
 }
