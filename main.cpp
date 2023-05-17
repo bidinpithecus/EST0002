@@ -62,5 +62,9 @@ void measures(long double z) {
 
 int main(void) {
 	// measures(6.5);
-
+	// cout << geometric(7, 0.2) << endl;
+	// cout << "All 6 of them: " << hyperGeometric(6, 48, 6, 6) << endl;
+	// cout << "Just 5 of them: " << hyperGeometric(6, 48, 6, 5) << endl;
+	// cout << "Just 3 of them: " << hyperGeometric(6, 48, 6, 3) << endl;
+	// cout << "None of them: " << hyperGeometric(6, 48, 6, 0) << endl;
 }
