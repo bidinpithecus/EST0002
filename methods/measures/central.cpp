@@ -26,7 +26,7 @@ long double median(vector<long double> vec) {
         return vec.at(vec.size() / 2);
     }
     // even
-    return (floor(vec.at(vec.size() / 2)) + ceil(vec.at(vec.size() / 2))) / 2.0;
+    return (vec.at((vec.size() / 2) - 1) + vec.at(vec.size() / 2)) / 2.0;
 }
 
 long double mode(vector<long double>& vec) {
@@ -49,7 +49,7 @@ long double mode(vector<long double>& vec) {
     return result->first;
 }
 
-long double medium(vector<long double> vec) {
+long double mediumPoint(vector<long double> vec) {
     sort(vec.begin(), vec.end());
 
     return (vec.at(0) + vec.at(vec.size() - 1)) / 2.0;
@@ -57,15 +57,10 @@ long double medium(vector<long double> vec) {
 
 long double truncatedMean(vector<long double> vec, long double percentage, int decision) {
     sort(vec.begin(), vec.end());
-    int removedNum;
+    long unsigned int removedNum = vec.size() * percentage;
     long double result = 0.0;
 
-    if (decision == FLOOR) {
-        int removedNum = floor(vec.size() * percentage);
-    } else {
-        int removedNum = ceil(vec.size() * percentage);
-    }
-    for (int i = removedNum, j = 0; i < vec.size() - removedNum; i++) {
+    for (long unsigned int i = removedNum, j = 0; i < vec.size() - removedNum; i++) {
         result += vec.at(i);
     }
 
@@ -78,7 +73,7 @@ long double harmonicMean(vector<long double> vec) {
         result += (1 / num);
     }
 
-    return result / vec.size();
+    return vec.size() / result;
 }
 
 long double geometricMean(vector<long double> vec) {
@@ -97,5 +92,5 @@ long double quadraticMean(vector<long double> vec) {
         result += pow(num, 2);
     }
 
-    return sqrt(result);
+    return sqrt(result / vec.size());
 }
