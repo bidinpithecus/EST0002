@@ -1,5 +1,5 @@
 #include "methods/probability/discrete.cpp"
-#include "methods/measures/central.cpp"
+#include "methods/measures/position.cpp"
 
 using namespace std;
 
@@ -29,7 +29,20 @@ void centralMeasures(vector<long double> arr) {
 	cout << "}" << endl;
 }
 
+void dispersionMeasures(vector<long double> arr) {
+	printArr(arr);
+	cout << " {" << endl;
+	cout << "\tRange: " << range(arr) << endl;
+	cout << "\tMean deviation: " << meanDeviation(arr) << endl;
+	cout << "\tstandardDeviation: " << standardDeviation(arr) << endl;
+	cout << "\tVariance: " << variance(arr) << endl;
+	cout << "\tcoefficientOfVariation: " << coefficientOfVariation(arr) * 100 << "%"<< endl;
+	cout << "}" << endl;
+}
+
 int main(void) {
 	vector<long double> arr = {6.5, 6.6, 6.7, 6.8, 7.1, 7.3, 7.4, 7.7, 7.7, 7.7};
 	centralMeasures(arr);
+	cout << endl;
+	dispersionMeasures(arr);
 }

@@ -6,7 +6,18 @@ long double range(vector<long double> vec) {
     return fabs(vec.at(0) - vec.at(vec.size() - 1)) ;
 }
 
-long double variance(vector<long double> vec) {
+long double meanDeviation(vector<long double> vec) {
+	long double vecMean = mean(vec);
+	long double result = 0.0;
+
+	for (auto num : vec) {
+		result += abs(num - vecMean);
+	}
+
+	return result / vec.size();
+}
+
+long double standardDeviation(vector<long double> vec) {
     long double vecMean = mean(vec);
     long double result = 0.0;
 
@@ -14,11 +25,11 @@ long double variance(vector<long double> vec) {
         result += pow(num - vecMean, 2);
     }
 
-    return result / vec.size();
+    return sqrt(result / vec.size());
 }
 
-long double standardDeviation(vector<long double> vec) {
-    return sqrt(variance(vec));
+long double variance(vector<long double> vec) {
+    return standardDeviation(vec) * standardDeviation(vec);
 }
 
 long double coefficientOfVariation(vector<long double> vec) {
