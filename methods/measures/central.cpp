@@ -55,7 +55,7 @@ long double mediumPoint(vector<long double> vec) {
     return (vec.at(0) + vec.at(vec.size() - 1)) / 2.0;
 }
 
-long double truncatedMean(vector<long double> vec, long double percentage, int decision) {
+long double truncatedMean(vector<long double> vec, long double percentage) {
     sort(vec.begin(), vec.end());
     long unsigned int removedNum = vec.size() * percentage;
     long double result = 0.0;
