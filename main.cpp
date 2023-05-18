@@ -60,11 +60,32 @@ void measures(long double z) {
 	cout << endl;
 }
 
+void probability(void) {
+	cout << "Geometric: {\n\t" << geometric(7, 0.2) << endl << "}" << endl;
+	cout << endl;
+	cout << "Hyper-Geometric: {\n\tAll 6 of them: " << hyperGeometric(6, 48, 6, 6) << endl;
+	cout << "\tJust 5 of them: " << hyperGeometric(6, 48, 6, 5) << endl;
+	cout << "\tJust 3 of them: " << hyperGeometric(6, 48, 6, 3) << endl;
+	cout << "\tNone of them: " << hyperGeometric(6, 48, 6, 0) << endl << "}" << endl;
+	cout << endl;
+	cout << "Multinomial: {\n\t" << multinomial(20, vector<pair<int, double>> {make_pair(5, (float) 1 / 6), make_pair(4, (float) 1 / 6), make_pair(3, (float) 1 / 6), make_pair(2, (float) 1 / 6), make_pair(3, (float) 1 / 6), make_pair(3, (float) 1 / 6)}) << endl << "}" << endl;
+	cout << endl;
+	cout << "Poisson (Mean: 93 / 100) {\n\t0: " << poisson(0, 93 / 100.0) << endl;
+	cout << "\t1: " << poisson(1, 93 / 100.0) << endl;
+	cout << "\tUntil 2: " << poisson(0, 93 / 100.0) + poisson(1, 93 / 100.0) + poisson(2, 93 / 100.0) << endl;
+	cout << "\tAbove 3: " << 1.0 - (poisson(0, 93 / 100.0) + poisson(1, 93 / 100.0) + poisson(2, 93 / 100.0) + poisson(3, 93 / 100.0)) << endl << "}" << endl;
+	cout << endl;
+	cout << "Poisson (Mean: 116 / 365) {\n\t0: " << poisson(0,  116 / 365.0) << endl;
+	cout << "\t1: " << poisson(1,  116 / 365.0) << endl;
+	cout << "\tAbove 1: " << 1.0 - (poisson(0,  116 / 365.0) + poisson(1,  116 / 365.0)) << endl << "}" << endl;
+	cout << endl;
+}
+
 int main(void) {
-	// measures(6.5);
-	// cout << geometric(7, 0.2) << endl;
-	// cout << "All 6 of them: " << hyperGeometric(6, 48, 6, 6) << endl;
-	// cout << "Just 5 of them: " << hyperGeometric(6, 48, 6, 5) << endl;
-	// cout << "Just 3 of them: " << hyperGeometric(6, 48, 6, 3) << endl;
-	// cout << "None of them: " << hyperGeometric(6, 48, 6, 0) << endl;
+	cout << "~~ ~~ MEASURES ~~ ~~ " << endl << endl;
+	measures(6.5);
+	cout << endl;
+	cout << "~~ ~~ PROBABILITIES ~~ ~~ " << endl << endl;
+	probability();
+	return 0;
 }

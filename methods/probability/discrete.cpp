@@ -1,13 +1,19 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
-unsigned int fact(unsigned int n) {
-    unsigned int res = 1;
-    for (unsigned int i = 2; i <= n; i++)
-        res *= i;
-    return res;
+unsigned int binomialCoeffs(int n, int k) {
+	return (k == 0 || n == k) ? 1 : binomialCoeffs(n - 1, k - 1) + binomialCoeffs(n - 1, k);
+}
+
+unsigned long int fact(unsigned long int n) {
+    return (n <= 1) ? 1 : n * exp(lgamma(n));
+}
+
+long double divFact(unsigned int n, unsigned int k) {
+    return ((long double) n / k) * exp(lgamma(n) - lgamma(k));
 }
 
 long double binomial(long double x, int n, long double p, long double q) {
@@ -29,19 +35,24 @@ long double geometric(long double x, long double p) {
 	'n' is the amount of proofs
 	'x'	is the amount of success I need
 */
-long double hyperGeometric(int a, int b, int n, int x) {
-	long double A = (long double) fact(a) / (fact(a - x) * fact(x));
-	cout << endl << "A: " << A << endl;
-	cout << fact(b);
-	long double B = (long double) fact(b) / (fact(b - n + x) * fact(n - x));
-	cout << "B: " << B << endl;
-	long double AB = (long double) fact(a + b) / (fact(a + b - n) * fact(n));
-	cout << "A+B: " << AB << endl;
-    return (A * B) / AB;
+double hyperGeometric(int a, int b, int n, int x) {
+	int A = binomialCoeffs(a, x);
+	int B = binomialCoeffs(b, n - x);
+	int AB = binomialCoeffs(a + b, n)	;
+    return (double) (A * B) / AB;
 }
 
-long double multinomial(int n, long double x1, long double x2, long double x3) {
-    return  (long double) fact(n) / (fact(x1) * fact(x2) * fact(x3));
+long double multinomial(int n, vector<pair<int, double>> xp) {
+	unsigned long int nFact = fact(n);
+	long double factors = 1;
+	unsigned long int facts = 1;
+
+	for (auto pair : xp) {
+		factors *= powf(pair.second, pair.first);
+		facts *= fact(pair.first);
+	}
+
+	return (long double) nFact * factors / facts;
 }
 
 long double poisson(int x, long double mi) {
